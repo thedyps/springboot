@@ -15,11 +15,10 @@ public class PcListController {
 	PcListService service;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(@RequestParam(value="pcType", required=false, defaultValue="Office") String pcType, Model model)
+	public String home(@RequestParam(value="pcType", required = false, defaultValue="Office") String pcType, Model model)
 			throws Exception {
 		model.addAttribute("pcListCount", service.getPcListCount(pcType));
 		model.addAttribute("pcList", service.getPcList(pcType, 1, 10));
-		model.addAttribute("pcFilterListVO",  service.getPcFilterList());
 		return "pcList";
 	}
 }

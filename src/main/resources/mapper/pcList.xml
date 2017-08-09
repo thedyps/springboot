@@ -54,32 +54,4 @@
 	<resultMap type="xyz.thedyps.project.springboot.goods.PcListVO" id="pcList">
 		<association property="pcListImgVO" javaType="xyz.thedyps.project.springboot.goods.PcListImgVO" column="{pcCode=pc_code}" select="getPcListImg"/>
 	</resultMap>
-
-	<resultMap id="filterList" type="xyz.thedyps.project.springboot.goods.PcFilterListVO">
-		<collection property="filterPcBrand" ofType="String" column="brand"/>
-		<collection property="filterCpuKind" ofType="String" select="getFilterCpuKind" c/>
-		<collection property="filterRamSpace" ofType="String" select="getFilterRamSpace"/>
-		<collection property="filterGraKind" ofType="String" select="getFilterGraKind"/>
-		<collection property="filterOsName" ofType="String" select="getFilterOsName"/>
-	</resultMap>
-
-	<select id="getPcFilterList" resultMap="filterList">
-		SELECT DISTINCT brand FROM PC
-	</select>
-
-	<select id="getFilterCpuKind" resultType="String">
-		SELECT DISTINCT cpuKin FROM CPU
-	</select>
-
-	<select id="getFilterRamSpace" resultType="String">
-		SELECT DISTINCT ramLimit FROM MAINBOARD
-	</select>
-
-	<select id="getFilterGraKind" resultType="String">
-		SELECT DISTINCT kind FROM GRAPHIC
-	</select>
-
-	<select id="getFilterOsName" resultType="String">
-		SELECT DISTINCT name FROM OS
-	</select>
 </mapper>
