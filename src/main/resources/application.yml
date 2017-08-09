@@ -1,8 +1,8 @@
 spring:
   datasource:
     type: org.apache.tomcat.jdbc.pool.DataSource
-    driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@jsdt04.cbhhznrharey.ap-northeast-2.rds.amazonaws.com:1521:ORCL
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:oracle:thin:@jsdt04.cbhhznrharey.ap-northeast-2.rds.amazonaws.com:1521:ORCL
     username: incjsdt04
     password: increpasjsdt04
   mvc:

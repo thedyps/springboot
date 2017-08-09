@@ -12,5 +12,6 @@
 </head>
 <body>
 ${pcListCount}
+${pcList.get(1).getCpuName()}
 </body>
 </html>
