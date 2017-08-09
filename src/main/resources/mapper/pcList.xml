@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.thedyps.project.springboot.mapper.PcListMapper" >
+ 	<select id="getPcListCount" resultType="int">
+	SELECT 
+		count(*) 
+	FROM PC P 
+		JOIN CPU C ON P.cpu = C.code 
+		JOIN RAM R ON P.ram = R.code 
+		JOIN MAINBOARD M ON P.mainboard = M.code 
+		LEFT OUTER JOIN HDD H ON P.hdd = H.code 
+		LEFT OUTER JOIN SSD S ON P.ssd = S.code 
+		JOIN GRAPHIC G ON P.graphic = G.code 
+		JOIN OS O ON P.os = O.code 
+	WHERE P.type = #{pcType, javaType=String, jdbcType=VARCHAR}
+ 	</select>
+
+	<select id="getPcListImg" resultType="xyz.thedyps.project.springboot.goods.PcListImgVO">
+		SELECT
+		*
+		FROM (
+		SELECT
+		imgPath c, imgOrder v
+		FROM PCIMAGE
+		WHERE pcCode = #{pcCode}
+		)
+		PIVOT (MIN(c) FOR v IN (2 brandImg, 3 mainImg))
+	</select>
+
+	<select id="getPcList" parameterType="map" resultMap="pcList">
+		SELECT * FROM (
+		SELECT ROWNUM rnum, result.* FROM (
+		SELECT P.code pc_code, P.brand pc_brand, P.type pc_type,
+		P.price pc_price, P.DELIVERYPRICE pc_deliprice, P.grade pc_grade,
+		C.name cpu_name, C.kind cpu_kind, C.speed cpu_speed,
+		R.speed ram_speed,
+		M.ramlimit mainboard_ramlimit,
+		H.space hdd_space, H.speed hdd_speed,
+		S.space ssd_space, S.speed ssd_speed,
+		G.kind graphic_kind, O.name os_name
+		FROM PC P
+		JOIN CPU C ON P.cpu = C.code
+		JOIN RAM R ON P.ram = R.code
+		JOIN MAINBOARD M ON P.mainboard = M.code
+		LEFT OUTER JOIN HDD H ON P.hdd = H.code
+		LEFT OUTER JOIN SSD S ON P.ssd = S.code
+		JOIN GRAPHIC G ON P.graphic = G.code
+		JOIN OS O ON P.os = O.code
+		WHERE P.type = #{pcType, javaType=String, jdbcType=VARCHAR}
+		) result
+		) WHERE rnum BETWEEN #{start, javaType=int, jdbcType=NUMERIC} AND #{end, javaType=int, jdbcType=NUMERIC}
+	</select>
+
+	<resultMap type="xyz.thedyps.project.springboot.goods.PcListVO" id="pcList">
+		<association property="pcListImgVO" javaType="xyz.thedyps.project.springboot.goods.PcListImgVO" column="{pcCode=pc_code}" select="getPcListImg"/>
+	</resultMap>
+
+	<resultMap id="filterList" type="xyz.thedyps.project.springboot.goods.PcFilterListVO">
+		<collection property="filterPcBrand" ofType="String" column="brand"/>
+		<collection property="filterCpuKind" ofType="String" select="getFilterCpuKind" c/>
+		<collection property="filterRamSpace" ofType="String" select="getFilterRamSpace"/>
+		<collection property="filterGraKind" ofType="String" select="getFilterGraKind"/>
+		<collection property="filterOsName" ofType="String" select="getFilterOsName"/>
+	</resultMap>
+
+	<select id="getPcFilterList" resultMap="filterList">
+		SELECT DISTINCT brand FROM PC
+	</select>
+
+	<select id="getFilterCpuKind" resultType="String">
+		SELECT DISTINCT cpuKin FROM CPU
+	</select>
+
+	<select id="getFilterRamSpace" resultType="String">
+		SELECT DISTINCT ramLimit FROM MAINBOARD
+	</select>
+
+	<select id="getFilterGraKind" resultType="String">
+		SELECT DISTINCT kind FROM GRAPHIC
+	</select>
+
+	<select id="getFilterOsName" resultType="String">
+		SELECT DISTINCT name FROM OS
+	</select>
+</mapper>
