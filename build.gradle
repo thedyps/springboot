@@ -5,9 +5,13 @@ buildscript {
 	repositories {
 		mavenCentral()
 		mavenLocal()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "com.moowork.gradle:gradle-node-plugin:1.2.0"
 	}
 }
 
@@ -15,6 +19,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
+apply plugin: "com.moowork.node"
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
@@ -22,6 +27,9 @@ sourceCompatibility = 1.8
 repositories {
 	mavenCentral()
 	mavenLocal()
+	maven {
+		url "https://plugins.gradle.org/m2"
+	}
 }
 
 configurations {
@@ -48,4 +56,31 @@ dependencies {
 	compile('org.apache.tiles:tiles-jsp:3.0.7')
 	compile('org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16')
 	compile('org.springframework:spring-context:4.3.10.RELEASE')
+	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.0')
 }
+
+node {
+	version = '8.2.1'
+	npmVersion = '5.3.0'
+	nodeModulesDir = file("frontend")
+}
+
+task buildClientDev(type: NpmTask, dependsOn: 'npmInstall') {
+	group = 'build'
+	description = 'Compile client side assets for development'
+	args = ['run', 'buildDev']
+}
+
+task buildClient(type: NpmTask, dependsOn: 'npmInstall') {
+	group = 'build'
+	description = 'Compile cliend side assets for production'
+	args = ['run', 'build']
+}
+
+task buildClientWatch(type: NpmTask, dependsOn: 'npmInstall') {
+	group = 'application'
+	description = 'Builds and watches the client side assets for rebulding'
+}
+
+bootRun.dependsOn(buildClientDev)
+jar.dependsOn(buildClient)

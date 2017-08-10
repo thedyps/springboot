@@ -5,11 +5,6 @@ spring:
     url: jdbc:log4jdbc:oracle:thin:@jsdt04.cbhhznrharey.ap-northeast-2.rds.amazonaws.com:1521:ORCL
     username: incjsdt04
     password: increpasjsdt04
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-
 mybatis:
   configuration:
     auto-mapping-behavior: full
