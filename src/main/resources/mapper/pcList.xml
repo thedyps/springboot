@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="xyz.thedyps.project.springboot.mapper.PcListMapper" >
+<mapper namespace="xyz.thedyps.project.springboot.goods.PcListDAO" >
  	<select id="getPcListCount" resultType="int">
 	SELECT 
 		count(*) 
@@ -15,7 +15,7 @@
 	WHERE P.type = #{pcType, javaType=String, jdbcType=VARCHAR}
  	</select>
 
-	<select id="getPcListImg" resultType="xyz.thedyps.project.springboot.goods.PcListImgVO">
+	<select id="getPcListImg" resultType="xyz.thedyps.project.springboot.goods.goodsVO.PcListImgVO">
 		SELECT
 		*
 		FROM (
@@ -51,7 +51,7 @@
 		) WHERE rnum BETWEEN #{start, javaType=int, jdbcType=NUMERIC} AND #{end, javaType=int, jdbcType=NUMERIC}
 	</select>
 
-	<resultMap type="xyz.thedyps.project.springboot.goods.PcListVO" id="pcList">
-		<association property="pcListImgVO" javaType="xyz.thedyps.project.springboot.goods.PcListImgVO" column="{pcCode=pc_code}" select="getPcListImg"/>
+	<resultMap type="xyz.thedyps.project.springboot.goods.goodsVO.PcListVO" id="pcList">
+		<association property="pcListImgVO" javaType="xyz.thedyps.project.springboot.goods.goodsVO.PcListImgVO" column="{pcCode=pc_code}" select="getPcListImg"/>
 	</resultMap>
 </mapper>

@@ -19,6 +19,7 @@ public class PcListController {
 			throws Exception {
 		model.addAttribute("pcListCount", service.getPcListCount(pcType));
 		model.addAttribute("pcList", service.getPcList(pcType, 1, 10));
-		return "pcList";
+		model.addAttribute("filterList", service.getFilterList());
+		return "index";
 	}
 }

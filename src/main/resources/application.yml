@@ -7,12 +7,12 @@ spring:
     password: increpasjsdt04
   mvc:
     view:
-      prefix: /WEB-INF/jsp/
+      prefix: /WEB-INF/views/
       suffix: .jsp
 
 mybatis:
   configuration:
     auto-mapping-behavior: full
     map-underscore-to-camel-case: true
-  type-aliases-package: xyz.thedyps.project.springboot.goods
+  type-aliases-package: xyz.thedyps.project.springboot.goods, xyz.thedyps.project.springboot.member
   mapper-locations: classpath:mapper/**/*.xml

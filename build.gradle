@@ -43,7 +43,9 @@ dependencies {
 	providedRuntime('javax.servlet:servlet-api:2.5')
 	providedRuntime('javax.servlet.jsp:javax.servlet.jsp-api:2.3.1')
 	compile('javax.servlet:jstl:1.2')
-	compile('org.apache.tiles:tiles-jsp:3.0.7')
+	providedRuntime('org.apache.tomcat.embed:tomcat-embed-jasper')
 	compile('org.apache.tiles:tiles-core:3.0.7')
+	compile('org.apache.tiles:tiles-jsp:3.0.7')
 	compile('org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16')
+	compile('org.springframework:spring-context:4.3.10.RELEASE')
 }
