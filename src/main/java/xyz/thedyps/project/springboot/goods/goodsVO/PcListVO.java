@@ -10,7 +10,7 @@ public class PcListVO {
 	hddSpeed, ssdSpace, ssdSpeed, graphicKind, osName;
 	private int pcPrice, pcDeliveryPrice, pcGrade;
 	private final String deliveryDate;
-	private PcListImgVO pcListImgVO;
+	private PcListImgVO pcListImg;
 	
 	public PcListVO() {
 		Calendar nowCal = Calendar.getInstance(Locale.KOREA);
@@ -160,12 +160,12 @@ public class PcListVO {
 		this.pcGrade = pcGrade;
 	}
 
-	public PcListImgVO getPcListImgVO() {
-		return pcListImgVO;
+	public PcListImgVO getPcListImg() {
+		return pcListImg;
 	}
 
-	public void setPcListImgVO(PcListImgVO pcListImgVO) {
-		this.pcListImgVO = pcListImgVO;
+	public void setPcListImg(PcListImgVO pcListImg) {
+		this.pcListImg = pcListImg;
 	}
 
 	public String getDeliveryDate() {

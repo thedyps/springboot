@@ -5,6 +5,8 @@ spring:
     url: jdbc:log4jdbc:oracle:thin:@jsdt04.cbhhznrharey.ap-northeast-2.rds.amazonaws.com:1521:ORCL
     username: incjsdt04
     password: increpasjsdt04
+  jackson:
+    joda-date-time-format: yy-mm-dd HH:mm:ss
 mybatis:
   configuration:
     auto-mapping-behavior: full

@@ -30,9 +30,9 @@ public class PcDetailService  {
 		param.put("pcCode", pcCode);
 		param.put("index", index);
 		
-		PcDetailImgVO pcDetailImgVO = pcDetailDAO.getPcDetailImg(pcCode);
-		pcDetailImgVO.setPcImg(pcDetailDAO.getPcImg(param));
-		pcDetailImgVO.setThumbnailImg(pcDetailDAO.getThumbnailImg(param));
-		return pcDetailImgVO;
+		PcDetailImgVO pcDetailImg = pcDetailDAO.getPcDetailImg(pcCode);
+		pcDetailImg.setPcImg(pcDetailDAO.getPcImg(param));
+		pcDetailImg.setThumbnailImg(pcDetailDAO.getThumbnailImg(param));
+		return pcDetailImg;
 	}
 }

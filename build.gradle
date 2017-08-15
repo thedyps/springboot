@@ -51,10 +51,7 @@ dependencies {
 	runtime('javax.servlet.jsp:javax.servlet.jsp-api:2.3.1')
 	compile('javax.servlet:jstl:1.2')
 	runtime('org.apache.tomcat.embed:tomcat-embed-jasper')
-	compile('org.apache.tiles:tiles-core:3.0.7')
-	compile('org.apache.tiles:tiles-jsp:3.0.7')
 	compile('org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16')
-	compile('org.springframework:spring-context:4.3.10.RELEASE')
 	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.0')
 }
 
@@ -64,19 +61,19 @@ node {
 	nodeModulesDir = file("frontend")
 }
 
-task buildClientDev(type: NpmTask, dependsOn: 'npmInstall') {
+task buildClientDev(type: NpmTask) {
 	group = 'build'
 	description = 'Compile client side assets for development'
 	args = ['run', 'buildDev']
 }
 
-task buildClient(type: NpmTask, dependsOn: 'npmInstall') {
+task buildClient(type: NpmTask) {
 	group = 'build'
 	description = 'Compile cliend side assets for production'
 	args = ['run', 'build']
 }
 
-task buildClientWatch(type: NpmTask, dependsOn: 'npmInstall') {
+task buildClientWatch(type: NpmTask) {
 	group = 'application'
 	description = 'Builds and watches the client side assets for rebulding'
 }

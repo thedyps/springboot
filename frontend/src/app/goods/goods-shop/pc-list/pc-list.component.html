@@ -1,0 +1,249 @@
+<div class="container-fluid">
+  <div id="mainImgSlide" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#mainImgSlide" data-slide-to="0" class="active"></li>
+      <li data-target="#mainImgSlide" data-slide-to="1"></li>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="assets/ShopImages/main-gigabyte.jpg" alt="GIGABYTE">
+      </div>
+      <div class="item">
+        <img src="assets/ShopImages/main-msi.jpg" alt="MSI">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#mainImgSlide" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">이전</span>
+    </a>
+    <a class="right carousel-control" href="#mainImgSlide" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">다음</span>
+    </a>
+  </div>
+  <!-- PC의 간략한 정보를 상품 리스트로 출력하는 부분 -->
+  <h1 *ngIf="pcListCount <= 0; else existList">등록된 상품이 없습니다.</h1>
+  <ng-template #existList>
+    <div class="row row-offcanvas row-offcanvas-right">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <button type="button" class="pull-left btn btn-primary btn-lg visible-xs" data-toggle="offcanvas">
+          <span class="glyphicon glyphicon-align-justify" aria-hidden="true"> 상품검색</span>
+        </button>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-0 panel-group sidebar-offcanvas" id="sidebar" role="tablist">
+        <div>
+          <span>검색하기 :</span>
+          <div>
+            <input type="text" size="20" id="content-search-bar" name="searchWord">
+            <button type="button" class="btn btn-default" aria-label="Search">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+        <div>
+          <span>페이지</span>
+          <span></span>
+          <div>
+            <button type="button" class="btn btn-default" aria-label="Page Left"
+                    onClick="location.href='pcList.do=?pageNum=return false;'">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-default" aria-label="Page Right"
+                    onClick="location.href='pcList.do=?pageNum=return false;'">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+        <div>
+          <span>정렬하기 :</span>
+          <div>
+            <select name="sortWord" onchange="this.form.submit()">
+              <option value="">정렬 기준</option>
+              <option value="priceAsc">낮은 가격순</option>
+              <option value="priceDesc">높은 가격순</option>
+              <option value="gradeDesc">높은 평점순</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <span>보기</span>
+          <div>
+            <button type="button" class="btn btn-default" aria-label="List View">
+              <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-default" aria-label="Grid View">
+              <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse_1">
+                브랜드명
+              </a>
+            </h4>
+          </div>
+          <div id="collapse_1" class="panel-collapse collapse in" role="tabpanel">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let filter of pcFilter?.filterPcBrand">
+                <label>
+                  <input type="checkbox" name="pcBrand" [value]="filter">
+                  <span>{{filter}}</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse_2">
+                CPU 종류
+              </a>
+            </h4>
+          </div>
+          <div id="collapse_2" class="panel-collapse collapse in" role="tabpanel">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let filter of pcFilter?.filterCpuKind">
+                <label>
+                  <input type="checkbox" name="cpuKind" [value]="filter">
+                  <span>{{filter}}</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse_3">
+                메모리 용량
+              </a>
+            </h4>
+          </div>
+          <div id="collapse_3" class="panel-collapse collapse in" role="tabpanel">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let filter of pcFilter?.filterRamSpace">
+                <label>
+                  <input type="checkbox" name="ramSpace" [value]="filter">
+                  <span>{{filter}}</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse_4">
+                그래픽 칩셋 종류
+              </a>
+            </h4>
+          </div>
+          <div id="collapse_4" class="panel-collapse collapse in" role="tabpanel">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let filter of pcFilter?.filterGraKind">
+                <label>
+                  <input type="checkbox" name="graKind" [value]="filter">
+                  <span>{{filter}}</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse_5">
+                운영체제
+              </a>
+            </h4>
+          </div>
+          <div id="collapse_5" class="panel-collapse collapse in" role="tabpanel">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let filter of pcFilter?.filterOsName">
+                <label>
+                  <input type="checkbox" name="osName" [value]="filter">
+                  <span>{{filter}}</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">
+        <ul class="list-group">
+          <!-- 한 개의  PC 열기-->
+          <li class="list-group-item" *ngFor="let pc of pcList">
+            <div class="row">
+              <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div></div>
+                <div>
+                  <a href="pcDetail.jsp?code={{pc.pcCode}}">
+                    <img [src]="'assets/'+pc.pcListImg.mainImg" class="img-responsive center-block">
+                  </a>
+                </div>
+                <div></div>
+              </div>
+              <div class="col-lg-6 col-md-8 col-sm-8 col-xs-12">
+                <div>
+                  <a href="pcDetail.jsp?code={{pc.pcCode}}">
+                    <img [src]="'assets/'+pc.pcListImg.brandImg">
+                  </a>
+                </div>
+                <h2>
+                  <a [routerLink]="['/goods/detail', pc.pcCode]">
+                    <span *ngIf="!pc.ssdSpace">
+                        {{pc.pcBrand }} 데스크탑 컴퓨터 {{pc.cpuKind}} ({{pc.cpuKind}}) {{pc.hddSpace}} HDD {{pc.graphicKind}} {{pc.osName}}
+                    </span>
+                    <span *ngIf="!pc.hddSpace">
+                      {{pc.pcBrand}} 데스크탑 컴퓨터 {{pc.cpuKind}} ({{pc.cpuSpeed}}) {{pc.ssdSpace}} SSD {{pc.graphicKind}} {{pc.osName}}
+                    </span>
+                    <span *ngIf="pc.hddSpace && pc.ssdSpace">
+                      {{pc.pcBrand}} 데스크탑 컴퓨터 {{pc.cpuKind}} ({{pc.cpuSpeed}}) {{pc.hddSpace}} HDD  {{pc.ssdSpace}} SSD {{pc.graphicKind}} {{pc.osName}}
+                    </span>
+                  </a>
+                </h2>
+              </div>
+              <div class="col-lg-3 col-md-12 col-sm-8 col-xs-12">
+                <div>
+                  <div>
+                    <a href="pcDetail.jsp?code={{pc.pcCode}}">
+                      <span><strong>{{pc.pcPrice | currency}}</strong></span>
+                    </a>
+                  </div>
+                  <div>
+                    <span>예상 배송일: {{pc.deliveryDate}}</span>
+                    </div>
+                    <div>
+                      <span *ngIf="pc.pcDeliveryPrice > 0">배송료 : {{pc.pcDeliveryPrice | currency}}원</span>
+                      <span *ngIf="pc.pcDeliveryPrice <= 0">배송료 : 무료 배송</span>
+                    </div>
+                  </div>
+                <div>
+                  <strong>등급:</strong>
+                  <!-- 등급 -->
+                  <ul>
+                    <li><strong>CPU: </strong>{{pc.cpuKind}} {{pc.cpuName}} {{pc.cpuSpeed}}</li>
+                    <li><strong>메모리: </strong>{{pc.mainBoardRamLimit}} {{pc.ramSpeed}}</li>
+                    <li *ngIf="!pc.ssdSpace"><strong>저장장치: </strong>{{pc.hddSpace}} HDD</li>
+                    <li *ngIf="!pc.hddSpace"><strong>저장장치: </strong>{{pc.ssdSpace}}</li>
+                    <li *ngIf="pc.hddSpace && pc.ssdSpace"><strong>저장장치: </strong>{{pc.hddSpace}} HDD</li>
+                    <li *ngIf="pc.hddSpace && pc.ssdSpace"><strong>저장장치: </strong>{{pc.ssdSpace}} SSD</li>
+                    <li><strong>그래픽 카드: </strong>{{pc.graphicKind}}</li>
+                    <li><strong>용도: </strong>{{pc.pcType}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-template>
+</div>

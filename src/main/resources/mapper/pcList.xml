@@ -52,6 +52,6 @@
 	</select>
 
 	<resultMap type="xyz.thedyps.project.springboot.goods.goodsVO.PcListVO" id="pcList">
-		<association property="pcListImgVO" javaType="xyz.thedyps.project.springboot.goods.goodsVO.PcListImgVO" column="{pcCode=pc_code}" select="getPcListImg"/>
+		<association property="pcListImg" javaType="xyz.thedyps.project.springboot.goods.goodsVO.PcListImgVO" column="{pcCode=pc_code}" select="getPcListImg"/>
 	</resultMap>
 </mapper>
