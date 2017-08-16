@@ -6,8 +6,10 @@ import {PcListComponent} from "./goods-shop/pc-list/pc-list.component";
 import {PcDetailComponent} from "./goods-shop/pc-detail/pc-detail.component";
 import {FooterComponent} from "./goods-shop/footer/footer.component";
 import {GoodsRoutingModule} from "./goods-routing.module";
+import {ImageGalleryComponent} from "./goods-shop/pc-list/image-gallery/image-gallery.component";
 
-const CORE_COMPONENTS = [GoodsShopComponent, NavbarComponent, PcListComponent, PcDetailComponent, FooterComponent];
+const CORE_COMPONENTS = [GoodsShopComponent, NavbarComponent, PcListComponent, PcDetailComponent, FooterComponent,
+ImageGalleryComponent];
 
 @NgModule({
   imports: [CommonModule, GoodsRoutingModule],
