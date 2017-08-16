@@ -63,4 +63,8 @@
 	SELECT imgPath pcImg FROM PCIMAGE WHERE pcCode = #{pcCode, javaType=String} AND imgOrder>#{index, javaType=int, jdbcType=NUMERIC} ORDER BY imgOrder
 	]]>
 	</select>
+
+	<select id="getBrandImg" resultType="String" parameterType="String">
+		SELECT brandImg
+	</select>
 </mapper>

@@ -1,30 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-      <div id="DetailImgSlide" class="carousel slide" data-ride="carousel" data-interval="false">
-        <div class="row">
-          <ul class="list-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
-            <li data-target="#DetailImgSlide" data-slide-to="0" class="list-group-item active">
-              <img [src]="'assets/'+pcDetailImg?.thumbnailImg[0]" alt="">
-            </li>
-            <li data-target="#DetailImgSlide"
-                *ngFor="let img of pcDetailImg?.thumbnailImg | slice:1;" [attr.data-index]="i" class="list-group-item">
-              <img [src]="'assets/'+img" alt="">
-            </li>
-          </ul>
-          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-              <div class="item active">
-                <img [src]="'assets/'+pcDetailImg?.pcImg[0]" alt="상세 이미지">
-              </div>
-              <div class="item" *ngFor="let img of pcDetailImg?.pcImg | slice:1; let i = index;" [attr.data-index]="i" class="list-group-item">
-                <img [src]="'assets/'+img" alt="상세 이미지">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-detail-image [pcCode]="pcCode"></app-detail-image>
     </div>
     <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12">
       <img [src]="'assets/'+pcDetailImg?.brandImg" alt="브랜드 이미지" class="brandImg"/>

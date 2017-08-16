@@ -18,4 +18,5 @@ public interface PcDetailDAO {
 	PcDetailImgVO getPcDetailImg(String pcCode);
 	List<String> getPcImg(Map<String,Object> param);
 	List<String> getThumbnailImg(Map<String,Object> param);
+	String getBrandImg(String pcCode);
 }

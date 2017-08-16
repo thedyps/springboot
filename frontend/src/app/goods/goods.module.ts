@@ -7,9 +7,10 @@ import {PcDetailComponent} from "./goods-shop/pc-detail/pc-detail.component";
 import {FooterComponent} from "./goods-shop/footer/footer.component";
 import {GoodsRoutingModule} from "./goods-routing.module";
 import {ImageGalleryComponent} from "./goods-shop/pc-list/image-gallery/image-gallery.component";
+import {DetailImageComponent} from "./goods-shop/pc-detail/detail-image/detail-image.component";
 
 const CORE_COMPONENTS = [GoodsShopComponent, NavbarComponent, PcListComponent, PcDetailComponent, FooterComponent,
-ImageGalleryComponent];
+ImageGalleryComponent, DetailImageComponent];
 
 @NgModule({
   imports: [CommonModule, GoodsRoutingModule],

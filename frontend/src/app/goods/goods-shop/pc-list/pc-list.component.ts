@@ -12,13 +12,14 @@ import "rxjs/add/operator/catch";
   templateUrl: './pc-list.component.html',
   styleUrls: ['./pc-list.component.css'],
 })
-export class PcListComponent implements OnInit {
+export class PcListComponent implements OnInit  {
 
   baseUrl: string = 'http://localhost:8080/goods/list/';
   pcType: string;
   pcList: PcList[] = [];
   pcFilter: PcFilter;
   pcListCount: number = 0;
+  active: boolean = false;
 
   constructor(private http: Http, private route: ActivatedRoute) {}
 
@@ -47,5 +48,9 @@ export class PcListComponent implements OnInit {
 
   getFilter(): Observable<PcFilter> {
     return this.http.get(this.baseUrl + 'filter').map(res => res.json());
+  }
+
+  toggleSide() {
+    this.active = !this.active;
   }
 }
