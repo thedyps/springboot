@@ -47,3 +47,13 @@ export interface PcDetailImg {
   pcImg: string[];
   thumbnailImg: string[];
 }
+
+export interface FilterData {
+  searchWord?: string;
+  sortWord?: string;
+  pcBrand?: boolean[];
+  cpuKind?: boolean[];
+  ramSpace?: boolean[];
+  graKind?: boolean[];
+  osName?: boolean[];
+}

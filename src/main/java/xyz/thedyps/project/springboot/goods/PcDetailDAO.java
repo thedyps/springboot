@@ -15,8 +15,7 @@ public interface PcDetailDAO {
 	PcSummaryVO getPcSummary(String pcCode);
 	PcDetailVO getPcDetail(String pcCode);
 	int getPcImgCount(String pcCode);
-	PcDetailImgVO getPcDetailImg(String pcCode);
+	String getBrandImg(String pcCode);
 	List<String> getPcImg(Map<String,Object> param);
 	List<String> getThumbnailImg(Map<String,Object> param);
-	String getBrandImg(String pcCode);
 }

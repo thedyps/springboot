@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {PcListComponent} from "./goods-shop/pc-list/pc-list.component";
 
 const routes: Routes = [
-  { path: 'list/:pcType', component: PcListComponent}
+
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {PcDetail, PcDetailImg, PcSummary} from "../pc-list-data";
+import {PcDetail, PcDetailImg, PcSummary} from "../goods-shop-data";
 import {Http} from "@angular/http";
 
 @Injectable()

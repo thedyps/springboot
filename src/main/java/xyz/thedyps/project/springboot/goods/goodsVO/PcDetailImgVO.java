@@ -6,9 +6,7 @@ public class PcDetailImgVO {
 	private String brandImg;
 	private List<String> pcImg;
 	private List<String> thumbnailImg;
-	public String getBrandImg() {
-		return brandImg;
-	}
+	public String getBrandImg() { return brandImg; }
 	public void setBrandImg(String brandImg) {
 		this.brandImg = brandImg;
 	}

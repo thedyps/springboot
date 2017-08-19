@@ -8,12 +8,15 @@ import {FooterComponent} from "./goods-shop/footer/footer.component";
 import {GoodsRoutingModule} from "./goods-routing.module";
 import {ImageGalleryComponent} from "./goods-shop/pc-list/image-gallery/image-gallery.component";
 import {DetailImageComponent} from "./goods-shop/pc-detail/detail-image/detail-image.component";
+import {SidebarComponent} from "./goods-shop/pc-list/sidebar/sidebar.component";
+import {HttpModule} from "@angular/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 const CORE_COMPONENTS = [GoodsShopComponent, NavbarComponent, PcListComponent, PcDetailComponent, FooterComponent,
-ImageGalleryComponent, DetailImageComponent];
+ImageGalleryComponent, DetailImageComponent, SidebarComponent];
 
 @NgModule({
-  imports: [CommonModule, GoodsRoutingModule],
+  imports: [CommonModule, GoodsRoutingModule, FormsModule, HttpModule, ReactiveFormsModule],
   declarations: CORE_COMPONENTS,
   exports: CORE_COMPONENTS
 })

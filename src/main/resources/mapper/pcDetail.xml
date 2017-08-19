@@ -48,8 +48,8 @@
 	SELECT count(*) FROM PCIMAGE WHERE pcCode = #{pcCode} AND imgOrder>2
 	</select>
 	
-	<select id="getPcDetailImg" resultType="xyz.thedyps.project.springboot.goods.goodsVO.PcDetailImgVO">
-	SELECT imgPath brandImg, pcCode FROM PCIMAGE WHERE pcCode = #{pcCode, javaType=String} AND imgOrder=1 ORDER BY imgOrder
+	<select id="getBrandImg" resultType="String">
+	SELECT imgPath brandImg FROM PCIMAGE WHERE pcCode = #{pcCode, javaType=String} AND imgOrder=1 ORDER BY imgOrder
 	</select>
 	
 	<select id="getPcImg" resultType="String" parameterType="map">
@@ -60,11 +60,7 @@
 	
 	<select id="getThumbnailImg" resultType="String" parameterType="map">
 	<![CDATA[
-	SELECT imgPath pcImg FROM PCIMAGE WHERE pcCode = #{pcCode, javaType=String} AND imgOrder>#{index, javaType=int, jdbcType=NUMERIC} ORDER BY imgOrder
+	SELECT imgPath thumbnailImg FROM PCIMAGE WHERE pcCode = #{pcCode, javaType=String} AND imgOrder>#{index, javaType=int, jdbcType=NUMERIC} ORDER BY imgOrder
 	]]>
-	</select>
-
-	<select id="getBrandImg" resultType="String" parameterType="String">
-		SELECT brandImg * f
 	</select>
 </mapper>

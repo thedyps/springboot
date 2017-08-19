@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {PcDetail, PcDetailImg, PcSummary} from "../pc-list-data";
+import {PcDetail, PcDetailImg, PcSummary} from "../goods-shop-data";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import {PcDetailService} from "./pc-detail.service";
@@ -29,6 +29,8 @@ export class PcDetailComponent implements OnInit {
     this.service.getPcSummary(this.pcCode).subscribe( (summary) => this.pcSummary = summary,
       (err) => {console.log(err)});
     this.service.getPcDetail(this.pcCode).subscribe( (detail) => this.pcDetail = detail,
+      (err) => {console.log(err)});
+    this.service.getPcDetailImg(this.pcCode).subscribe( (detailImg) => this.pcDetailImg = detailImg,
       (err) => {console.log(err)});
   }
 }

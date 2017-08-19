@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import {PcDetailImg} from "../../pc-list-data";
-import {PcDetailService} from "../pc-detail.service";
+import {PcDetailImg} from "../../goods-shop-data";
 declare var jquery:any;
 declare var $ :any;
 
@@ -8,17 +7,13 @@ declare var $ :any;
   selector: 'app-detail-image',
   templateUrl: './detail-image.component.html',
   styleUrls: ['./detail-image.component.css'],
-  providers: [PcDetailService]
 })
 export class DetailImageComponent implements OnInit, AfterViewInit   {
-  @Input() public pcCode: string;
-  pcDetailImg: PcDetailImg;
+  @Input() pcDetailImg: PcDetailImg;
 
-  constructor(private service: PcDetailService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.service.getPcDetailImg(this.pcCode).subscribe( (detailImg) => this.pcDetailImg = detailImg,
-      (err) => {console.log(err)});
   }
 
   ngAfterViewInit() {
