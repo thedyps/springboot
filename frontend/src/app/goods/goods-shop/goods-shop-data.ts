@@ -57,3 +57,10 @@ export interface FilterData {
   graKind?: boolean[];
   osName?: boolean[];
 }
+
+export const sortWords = [
+  {name: '정렬 기준', value: -1},
+  {name: '낮은 가격순', value: 'priceASC'},
+  {name: '높은 가격순', value: 'priceDESC'},
+  {name: '높은 등급순', value: 'gradeDESC'}
+];

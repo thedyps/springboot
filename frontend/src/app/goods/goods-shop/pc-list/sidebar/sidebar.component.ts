@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FilterData} from "../../goods-shop-data";
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {FilterData, sortWords} from "../../goods-shop-data";
 import {FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule , Validators } from "@angular/forms";
 
 @Component({
@@ -7,33 +7,52 @@ import {FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule , Va
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnChanges {
 
-  @Input() pcFilter;
+  @Input() private pcFilter;
+  private pcFilterKeys;
+  private sortWords = sortWords;
   public filterData: FilterData;
-  myForm: FormGroup;
 
+  formModel: FormGroup;
   constructor(private fb: FormBuilder) {
+    this.createForm();
   }
 
   ngOnInit() {
-    this.myForm = this.fb.group({
-      pcBrand: this.fb.array([]),
-      cpuKind: this.fb.array( []),
-      ramSpace: this.fb.array([]),
-      graKind: this.fb.array([]),
-      osName: this.fb.array([]),
+
+  }
+
+  ngOnChanges() {
+    this.pcFilterKeys = Object.keys(this.pcFilter);
+    this.setFilterPanel();
+  }
+
+  createForm() {
+    this.formModel = this.fb.group({
+      searchWord: [''],
+      sortWord: [-1],
+      filterPanel: this.fb.group({
+        filterPcBrand: '',
+        filterCpuKind: '',
+        filterRamSpace: '',
+        filterGraKind: '',
+        filterOsName: ''
+      })
     });
   }
 
-  onChanges(pcBrand:string, isChecked: boolean) {
-    const pcBrandFormArray = <FormArray>this.myForm.controls.pcBrand;
-
-    if(isChecked) {
-      pcBrandFormArray.push(new FormControl(pcBrand))
-    } else {
-      let index = pcBrandFormArray.controls.findIndex(x => x.value == pcBrand)
-      pcBrandFormArray.removeAt(index);
-    }
+  setFilterPanel() {
+    this.pcFilterKeys.forEach((key: string) => {
+      const filter: string[] = this.pcFilter[key];
+      const filterCtl = filter.map((filter) => this.fb.control(filter));
+      const filterFormArray = this.fb.array(filterCtl);
+      this.formModel.setControl(key, filterFormArray);
+    });
   }
+
+  onSubmit() {
+    console.log(this.formModel.value)
+  }
+
 }

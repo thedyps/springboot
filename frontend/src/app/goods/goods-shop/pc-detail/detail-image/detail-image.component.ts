@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import {PcDetailImg} from "../../goods-shop-data";
+import {PcDetailImg} from '../../goods-shop-data';
 declare var jquery:any;
 declare var $ :any;
 
@@ -9,7 +9,7 @@ declare var $ :any;
   styleUrls: ['./detail-image.component.css'],
 })
 export class DetailImageComponent implements OnInit, AfterViewInit   {
-  @Input() pcDetailImg: PcDetailImg;
+  @Input() pcDetailImg;
 
   constructor() { }
 
