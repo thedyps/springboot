@@ -12,12 +12,12 @@ export class PcListService {
   constructor(private http: Http) { }
 
   getCount(pcType: string): Observable<number> {
-    return this.http.get(this.baseUrl + pcType + '/count').map(res => res.json());
+    return this.http.get(this.baseUrl + pcType + '/count').map((res) => res.json());
   }
   getList(pcType: string): Observable<PcList[]> {
-    return this.http.get(this.baseUrl + pcType + '/show').map(res => res.json());
+    return this.http.get(this.baseUrl + pcType + '/show').map((res) => res.json());
   }
   getFilter(): Observable<PcFilter> {
-    return this.http.get(this.baseUrl + 'filter').map(res => res.json());
+    return this.http.get(this.baseUrl + 'filter').map((res) => res.json());
   }
 }

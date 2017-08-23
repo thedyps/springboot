@@ -48,10 +48,11 @@
       </div>
       <div id="collapse_1" class="panel-collapse collapse in" role="tabpanel">
         <ul class="list-group" formArrayName="filterPcBrand">
-          <li class="list-group-item" *ngFor="let p of formModel.get('filterPcBrand').controls; index as i">
+          <li class="list-group-item"
+              *ngFor="let value of pcFilter.filterPcBrand; index as i">
             <label>
-              <input type="checkbox" [formControlName]="i">
-              <span>{{p.value}}</span>
+              <input type="checkbox" (change)="onChange('filterPcBrand', value, $event.target.checked)">
+              <span>{{value}}</span>
             </label>
           </li>
         </ul>
@@ -67,10 +68,10 @@
       </div>
       <div id="collapse_2" class="panel-collapse collapse in" role="tabpanel">
         <ul class="list-group" formArrayName="filterCpuKind">
-          <li class="list-group-item" *ngFor="let c of formModel.get('filterCpuKind').controls; index as i">
+          <li class="list-group-item" *ngFor="let value of pcFilter.filterCpuKind; index as i">
             <label>
-              <input type="checkbox" [formControlName]="i">
-              <span>{{c.value}}</span>
+              <input type="checkbox" (change)="onChange('filterCpuKind', value, $event.target.checked)">
+              <span>{{value}}</span>
             </label>
           </li>
         </ul>
@@ -86,10 +87,10 @@
       </div>
       <div id="collapse_3" class="panel-collapse collapse in" role="tabpanel">
         <ul class="list-group" formArrayName="filterRamSpace">
-          <li class="list-group-item" *ngFor="let r of formModel.get('filterRamSpace').controls; index as i">
+          <li class="list-group-item" *ngFor="let value of pcFilter.filterRamSpace; index as i">
             <label>
-              <input type="checkbox" [formControlName]="i">
-              <span>{{r.value}}</span>
+              <input type="checkbox" (change)="onChange('filterRamSpace', value, $event.target.checked)">
+              <span>{{value}}</span>
             </label>
           </li>
         </ul>
@@ -105,10 +106,10 @@
       </div>
       <div id="collapse_4" class="panel-collapse collapse in" role="tabpanel">
         <ul class="list-group" formArrayName="filterGraKind">
-          <li class="list-group-item" *ngFor="let g of formModel.get('filterGraKind').controls; index as i">
+          <li class="list-group-item" *ngFor="let value of pcFilter.filterGraKind; index as i">
             <label>
-              <input type="checkbox" [formControlName]="i">
-              <span>{{g.value}}</span>
+              <input type="checkbox" (change)="onChange('filterGraKind', value, $event.target.checked)">
+              <span>{{value}}</span>
             </label>
           </li>
         </ul>
@@ -124,10 +125,10 @@
       </div>
       <div id="collapse_5" class="panel-collapse collapse in" role="tabpanel">
         <ul class="list-group" formArrayName="filterOsName">
-          <li class="list-group-item" *ngFor="let o of formModel.get('filterOsName').controls; index as i">
+          <li class="list-group-item" *ngFor="let value of pcFilter.filterOsName; index as i">
             <label>
-              <input type="checkbox" [formControlName]="i">
-              <span>{{o.value}}</span>
+              <input type="checkbox"  (change)="onChange('filterGraKind', value, $event.target.checked)">
+              <span>{{value}}</span>
             </label>
           </li>
         </ul>
@@ -135,3 +136,6 @@
     </div>
   </div>
 </form>
+<div>
+  {{formModel.value | json}}
+</div>

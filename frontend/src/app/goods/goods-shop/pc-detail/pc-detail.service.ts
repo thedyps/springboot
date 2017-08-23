@@ -11,13 +11,13 @@ export class PcDetailService {
   baseUrl: string = 'http://localhost:8080/goods/detail/';
 
   getPcSummary(pcCode: string): Observable<PcSummary> {
-    return this.http.get(this.baseUrl + pcCode + '/summary').map(res => res.json());
+    return this.http.get(this.baseUrl + pcCode + '/summary').map((res) => res.json());
   }
   getPcDetail(pcCode: string): Observable<PcDetail> {
-    return this.http.get(this.baseUrl + pcCode + '/show').map(res => res.json());
+    return this.http.get(this.baseUrl + pcCode + '/show').map((res) => res.json());
   }
 
   getPcDetailImg(pcCode: string): Observable<PcDetailImg> {
-    return this.http.get(this.baseUrl + pcCode + '/img').map(res => res.json());
+    return this.http.get(this.baseUrl + pcCode + '/img').map((res) => res.json());
   }
 }

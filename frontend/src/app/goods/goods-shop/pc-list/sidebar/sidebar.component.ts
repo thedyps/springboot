@@ -10,9 +10,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule , Va
 export class SidebarComponent implements OnInit, OnChanges {
 
   @Input() private pcFilter;
-  private pcFilterKeys;
   private sortWords = sortWords;
-  public filterData: FilterData;
 
   formModel: FormGroup;
   constructor(private fb: FormBuilder) {
@@ -24,8 +22,6 @@ export class SidebarComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.pcFilterKeys = Object.keys(this.pcFilter);
-    this.setFilterPanel();
   }
 
   createForm() {
@@ -33,22 +29,24 @@ export class SidebarComponent implements OnInit, OnChanges {
       searchWord: [''],
       sortWord: [-1],
       filterPanel: this.fb.group({
-        filterPcBrand: '',
-        filterCpuKind: '',
-        filterRamSpace: '',
-        filterGraKind: '',
-        filterOsName: ''
+        filterPcBrand: this.fb.array([]),
+        filterCpuKind: this.fb.array([]),
+        filterRamSpace: this.fb.array([]),
+        filterGraKind: this.fb.array([]),
+        filterOsName: this.fb.array([])
       })
     });
   }
 
-  setFilterPanel() {
-    this.pcFilterKeys.forEach((key: string) => {
-      const filter: string[] = this.pcFilter[key];
-      const filterCtl = filter.map((filter) => this.fb.control(filter));
-      const filterFormArray = this.fb.array(filterCtl);
-      this.formModel.setControl(key, filterFormArray);
-    });
+  onChange(kind:string, value:string, isChecked: boolean) {
+    const formArray = <FormArray>this.formModel.get('filterPanel').get(kind);
+
+    if(isChecked) {
+      formArray.push(new FormControl(value));
+    } else {
+      let index = formArray.controls.findIndex((x) => x.value == value)
+      formArray.removeAt(index);
+    }
   }
 
   onSubmit() {

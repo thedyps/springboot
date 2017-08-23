@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <app-image-gallery></app-image-gallery>
   <!-- PC의 간략한 정보를 상품 리스트로 출력하는 부분 -->
-  <h1 *ngIf="pcListCount <= 0; else existList">등록된 상품이 없습니다.</h1>
+  <h1 *ngIf="pcCount <= 0; else existList">등록된 상품이 없습니다.</h1>
   <ng-template #existList>
     <div [ngClass]="{'row': true, 'row-offcanvas': true, 'row-offcanvas-right': true
     , 'active': active}">
@@ -22,7 +22,7 @@
                 <div></div>
                 <div>
                   <a href="pcDetail.jsp?code={{pc.pcCode}}">
-                    <img [src]="'assets/'+pc.pcListImg.mainImg" class="img-responsive center-block">
+                    <img [src]="'assets/images/'+pc.pcListImg.mainImg" class="img-responsive center-block">
                   </a>
                 </div>
                 <div></div>
@@ -30,7 +30,7 @@
               <div class="col-lg-6 col-md-8 col-sm-8 col-xs-12">
                 <div>
                   <a href="pcDetail.jsp?code={{pc.pcCode}}">
-                    <img [src]="'assets/'+pc.pcListImg.brandImg">
+                    <img [src]="'assets/images/'+pc.pcListImg.brandImg">
                   </a>
                 </div>
                 <h2>
@@ -51,14 +51,14 @@
                 <div>
                   <div>
                     <a href="pcDetail.jsp?code={{pc.pcCode}}">
-                      <span><strong>{{pc.pcPrice | currency}}</strong></span>
+                      <span><strong>{{pc.pcPrice|currency:'KRW':true}}</strong></span>
                     </a>
                   </div>
                   <div>
                     <span>예상 배송일: {{pc.deliveryDate}}</span>
                     </div>
                     <div>
-                      <span *ngIf="pc.pcDeliveryPrice > 0">배송료 : {{pc.pcDeliveryPrice | currency}}원</span>
+                      <span *ngIf="pc.pcDeliveryPrice > 0">배송료 : {{pc.pcDeliveryPrice|currency:'KRW':true}}원</span>
                       <span *ngIf="pc.pcDeliveryPrice <= 0">배송료 : 무료 배송</span>
                     </div>
                   </div>

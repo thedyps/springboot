@@ -9,8 +9,7 @@ import {PcDetailService} from "./pc-detail.service";
 @Component({
   selector: 'app-pc-detail',
   templateUrl: './pc-detail.component.html',
-  styleUrls: ['./pc-detail.component.css'],
-  providers: [PcDetailService]
+  styleUrls: ['./pc-detail.component.css']
 })
 
 export class PcDetailComponent implements OnInit {
@@ -20,17 +19,17 @@ export class PcDetailComponent implements OnInit {
   pcDetail: PcDetail;
   pcDetailImg: PcDetailImg;
 
-  constructor(private route: ActivatedRoute,
-              private service: PcDetailService) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.pcCode = this.route.snapshot.params['pcCode'];
-
-    this.service.getPcSummary(this.pcCode).subscribe( (summary) => this.pcSummary = summary,
-      (err) => {console.log(err)});
-    this.service.getPcDetail(this.pcCode).subscribe( (detail) => this.pcDetail = detail,
-      (err) => {console.log(err)});
-    this.service.getPcDetailImg(this.pcCode).subscribe( (detailImg) => this.pcDetailImg = detailImg,
-      (err) => {console.log(err)});
+    this.route.data.subscribe((data: {summary: PcSummary}) => {
+      this.pcSummary = data.summary;
+    });
+    this.route.data.subscribe((data: {detail: PcDetail}) => {
+      this.pcDetail = data.detail
+    });
+    this.route.data.subscribe( (data: {image: PcDetailImg}) => {
+      this.pcDetailImg = data.image;
+    });
   }
 }
