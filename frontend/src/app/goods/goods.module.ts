@@ -11,8 +11,6 @@ import {DetailImageComponent} from "./goods-shop/pc-detail/detail-image/detail-i
 import {SidebarComponent} from "./goods-shop/pc-list/sidebar/sidebar.component";
 import {HttpModule} from "@angular/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {PcListResolverService} from "./goods-shop/pc-list/pc-list-resolver.service";
-import {PcListService} from "./goods-shop/pc-list/pc-list.service";
 
 const CORE_COMPONENTS = [GoodsShopComponent, NavbarComponent, PcListComponent, PcDetailComponent, FooterComponent,
 ImageGalleryComponent, DetailImageComponent, SidebarComponent];

@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {FilterData, sortWords} from "../../goods-shop-data";
-import {FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule , Validators } from "@angular/forms";
+import {sortWords} from "../../goods-shop-data";
+import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-sidebar',

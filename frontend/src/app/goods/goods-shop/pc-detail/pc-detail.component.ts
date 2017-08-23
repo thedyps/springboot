@@ -3,8 +3,6 @@ import {ActivatedRoute} from "@angular/router";
 import {PcDetail, PcDetailImg, PcSummary} from "../goods-shop-data";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
-import {PcDetailService} from "./pc-detail.service";
-
 
 @Component({
   selector: 'app-pc-detail',

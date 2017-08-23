@@ -1,6 +1,4 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import {PcDetailImg} from '../../goods-shop-data';
-declare var jquery:any;
 declare var $ :any;
 
 @Component({
